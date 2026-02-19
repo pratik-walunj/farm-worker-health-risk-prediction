@@ -82,7 +82,7 @@ section = st.sidebar.radio(
 )
 
 st.sidebar.markdown("---")
-st.sidebar.info("Portfolio-Level AI Research System")
+#st.sidebar.info("Portfolio-Level AI Research System")
 
 # ---------------------------------------------------
 # DASHBOARD
@@ -127,10 +127,11 @@ elif section == "🤖 Train Model":
         # Save accuracy history
         history_file = "accuracy_history.csv"
         new_entry = pd.DataFrame({
-            "Date": [datetime.now()],
-            "Accuracy": [acc],
-            "Training_Time": [training_time]
-        })
+        "Date": [datetime.now().strftime("%Y-%m-%d %H:%M:%S")],
+        "Accuracy": [acc],
+        "Training_Time": [training_time]
+   })
+
 
         if os.path.exists(history_file):
             history = pd.read_csv(history_file)
@@ -141,6 +142,7 @@ elif section == "🤖 Train Model":
         history.to_csv(history_file, index=False)
 
         st.markdown("### 📈 Accuracy History")
+        history["Date"] = history["Date"].astype(str)
         st.line_chart(history.set_index("Date")["Accuracy"])
 
         # Feature Importance
@@ -204,18 +206,30 @@ elif section == "🔎 Risk Prediction":
         st.metric("Prediction Confidence", f"{confidence:.2f}%")
 
         # -------------------------
-        # SHAP FORCE PLOT
+        # SHAP SECTION
         # -------------------------
 
         st.markdown("---")
-        st.markdown("## 🧠 SHAP Force Plot (Single Prediction)")
+        st.markdown("## 🧠 SHAP Feature Contribution")
 
-        explainer = shap.TreeExplainer(model)
-        shap_values = explainer(input_df)
+        try:
+            explainer = shap.TreeExplainer(model)
+            shap_values = explainer.shap_values(input_df)
 
-        fig = plt.figure()
-        shap.plots.waterfall(shap_values[0], show=False)
-        st.pyplot(fig)
+            fig, ax = plt.subplots()
+            # For multi-class, select predicted class
+            shap.summary_plot(
+                shap_values[prediction],
+                input_df,
+                plot_type="bar",
+                show=False
+            )
+            st.pyplot(fig)
+
+            
+
+        except Exception:
+            st.warning("SHAP visualization not supported for this model type.")
 
         # -------------------------
         # PDF REPORT

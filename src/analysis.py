@@ -181,7 +181,8 @@ def shap_explainability(model, X_test):
 
     shap.summary_plot(shap_values, X_test, show=False)
     plt.title("SHAP Feature Importance")
-    plt.show()
+    return plt.gcf()
+
 
 
 # -------------------------------------------------
@@ -197,7 +198,8 @@ def plot_feature_importance(model, feature_names):
         plt.xticks(rotation=45)
         plt.title("Feature Importance")
         plt.tight_layout()
-        plt.show()
+        return plt.gcf()
+
 
 
 # -------------------------------------------------
@@ -214,7 +216,8 @@ def plot_confusion_matrix(model, X_test, y_test):
     plt.xlabel("Predicted")
     plt.ylabel("Actual")
     plt.title("Confusion Matrix")
-    plt.show()
+    return plt.gcf()
+
 
 
 # -------------------------------------------------
@@ -235,7 +238,8 @@ def plot_roc_curve(model, X_test, y_test):
 
     plt.legend()
     plt.title("ROC Curve")
-    plt.show()
+    return plt.gcf()
+
 
 
 # -------------------------------------------------
