@@ -72,13 +72,13 @@ These parameters were used to train machine learning models to classify risk lev
 ![dashboard](dashboard.png)
 
 ### Confusion Matrix
-
+![Confusion Matrix](Confusion Matrix.png)
 
 ### ROC Curve
-
+![ROC Curve](Roc Curve.png)
 
 ### Feature Importance
-[()]
+![Feature Importance](Feature importance.png)
 
 ---
 
