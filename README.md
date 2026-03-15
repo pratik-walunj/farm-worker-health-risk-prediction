@@ -69,7 +69,7 @@ These parameters were used to train machine learning models to classify risk lev
 ## 📸 Project Screenshots
 
 ### Streamlit Dashboard
-(Add dashboard screenshot here)
+()
 
 ### Confusion Matrix
 (Add confusion matrix image)
