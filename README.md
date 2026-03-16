@@ -78,7 +78,7 @@ These parameters were used to train machine learning models to classify risk lev
 ![ROC Curve](Roc Curve.png)
 
 ### Feature Importance
-![Feature Importance](Feature importance.png)
+![Feature Importance](Feature_importance.png)
 
 ---
 
